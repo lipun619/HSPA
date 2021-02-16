@@ -9,9 +9,8 @@
         <input type="text" class="form-control" #propName = "ngModel" ngModel
         name="Name" required minlength="5">
         <span *ngIf ="!propName.valid && propName.touched" class="error-block">
-          <span>Please Provide a Name</span>
-          <!-- <span *ngIf= "propName.errors.required">Please Provide a Name</span>
-          <span *ngIf= "propName.errors.minlength">Name must be atleast 5 char long</span> -->
+          <span *ngIf= "propName.errors!.required">Please Provide a Name</span>
+          <span *ngIf= "propName.errors!.minlength">Name must be atleast 5 char long</span>
         </span>
       </div>
 
@@ -27,7 +26,7 @@
 
       <div class="form-group col-12">
         <button [disabled] = "!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
-        <button type="reset" class="btn btn-primary">Cancel</button>
+        <button type="reset" class="btn btn-secondary">Cancel</button>
       </div>
     </form>
   </div>

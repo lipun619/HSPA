@@ -10,10 +10,9 @@ import { Router } from '@angular/router';
 export class AddPropertyComponent implements OnInit {
   @ViewChild('Form') addPropertyForm: NgForm | undefined;
 
-  constructor(private route: Router) { }
+  constructor(private route: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onBack() {
     this.route.navigate(['/']);

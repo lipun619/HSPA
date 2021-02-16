@@ -1,3 +1,7 @@
 .form-inline {
   margin-left: auto;
 }
+
+.loggout {
+  cursor:pointer;
+}

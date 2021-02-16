@@ -1,4 +1,3 @@
-import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -9,6 +8,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { User } from 'src/app/model/user';
+import { UserServiceService } from 'src/app/service/user-service.service';
+import { AlertifyService } from 'src/app/service/alertify.service';
 
 @Component({
   selector: 'app-user-register',
@@ -17,7 +19,13 @@ import {
 })
 export class UserRegisterComponent implements OnInit {
   registrationForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  user!: User;
+  userSubmitted: boolean = false;
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserServiceService,
+    private alertify:AlertifyService
+  ) {}
 
   ngOnInit(): void {
     this.createRegistrationForm();
@@ -94,6 +102,24 @@ export class UserRegisterComponent implements OnInit {
   // ------------------------
 
   onSubmit() {
-    console.log(this.registrationForm);
+    this.userSubmitted = true;
+    if (this.registrationForm.valid) {
+      // this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userService.addUsers(this.userData());
+      this.registrationForm.reset();
+      this.userSubmitted = false;
+      this.alertify.success('Congrats, You are successfully registered');
+    } else {
+      this.alertify.error('Kindly provide the required fields')
+    }
+  }
+
+  userData(): User {
+    return this.user = {
+      username: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      mobile: this.mobile.value
+    }
   }
 }

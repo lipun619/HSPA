@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
-import { RouterModule, Routes } from '@angular/router'
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
@@ -13,6 +15,10 @@ import { PropertyDetailComponent } from './property/property-detail/property-det
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { HousingService } from './service/housing.service';
+import { UserServiceService } from './service/user-service.service';
+import { AlertifyService } from './service/alertify.service';
+import { AuthService } from './service/auth.service';
 
 
 const appRoutes: Routes = [
@@ -44,9 +50,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
-  providers: [],
+  providers: [HousingService, UserServiceService, AlertifyService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
