@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 import { IProperty } from '../property/Iproperty.interface';
 import { Observable } from 'rxjs';
+import { CompileStylesheetMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HousingService {
   constructor(private http: HttpClient) {}
-  getAllProperties(): Observable<IProperty[]> {
 
+  getAllProperties(SellRent: number) {
     return this.http.get('data/properties.json').pipe(
-      map(data => {
-        console.log(data);
+      map((data) => {
         const propertiesArray: Array<IProperty> = [];
-        for (const id in data) {
-          if (data.hasOwnProperty(id)) {
-            propertiesArray.push(data[id]);
+        let dataArray: any = [];
+        dataArray = data;
+        for (const id in dataArray) {
+          if (data.hasOwnProperty(id) && dataArray[id].SellRent === SellRent) {
+            propertiesArray.push(dataArray[id]);
           }
         }
         return propertiesArray;

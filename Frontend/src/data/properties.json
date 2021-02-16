@@ -1,38 +1,50 @@
 [
   {
     "Id": 1,
+    "SellRent": 1,
     "Name": "Birla House",
     "Type": "House",
-    "Price": 12000
+    "Price": 12000,
+    "Image": "prop-1"
   },
   {
     "Id": 2,
+    "SellRent": 2,
     "Name": "Eros Villa",
     "Type": "Villa",
-    "Price": 15000
+    "Price": 15000,
+    "Image": "prop-2"
   },
   {
     "Id": 3,
+    "SellRent": 1,
     "Name": "Macro Home",
     "Type": "House",
-    "Price": 11000
+    "Price": 11000,
+    "Image": "prop-3"
   },
   {
     "Id": 4,
+    "SellRent": 2,
     "Name": "Pearl House",
     "Type": "House",
-    "Price": 16000
+    "Price": 16000,
+    "Image": "prop-4"
   },
   {
     "Id": 5,
+    "SellRent": 1,
     "Name": "None Villa",
     "Type": "Villa",
-    "Price": 34000
+    "Price": 34000,
+    "Image": "prop-5"
   },
   {
     "Id": 6,
+    "SellRent": 1,
     "Name": "kakarot Villa",
     "Type": "Villa",
-    "Price": 56000
+    "Price": 56000,
+    "Image": "prop-6"
   }
 ]
