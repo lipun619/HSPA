@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { IProperty } from "../Iproperty.interface";
+import { ipropertyBase } from "src/app/model/ipropertybase";
 
 @Component({
   selector: 'app-property-card',
@@ -8,6 +8,8 @@ import { IProperty } from "../Iproperty.interface";
 })
 export class PropertyCardComponent {
   @Input()
-  property!: IProperty;
+  property!: ipropertyBase;
+  @Input()
+  hideIcons: boolean | undefined;
 
 }

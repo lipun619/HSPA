@@ -29,13 +29,6 @@ export class UserRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.createRegistrationForm();
-    // this.registrationForm = new FormGroup ({
-    //   userName : new FormControl('Lipun', Validators.required),
-    //   email: new FormControl(null, [Validators.required, Validators.email]),
-    //   password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-    //   confirmPassword: new FormControl(null, [Validators.required]),
-    //   mobile: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
-    // }, this.passwordMatchingValidatior);
   }
 
   createRegistrationForm() {
@@ -55,10 +48,7 @@ export class UserRegisterComponent implements OnInit {
         ],
       },
       {
-        validators: this.passwordMatchingValidator(
-          'password',
-          'confirmPassword'
-        ),
+        validators: this.passwordMatchingValidator('password', 'confirmPassword'),
       }
     );
   }
