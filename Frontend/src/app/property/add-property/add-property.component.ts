@@ -1,5 +1,4 @@
-import { ReturnStatement } from '@angular/compiler';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -19,7 +18,6 @@ import { Property } from '../../model/properties'
   styleUrls: ['./add-property.component.scss'],
 })
 export class AddPropertyComponent implements OnInit {
-  // @ViewChild('Form') addPropertyForm: NgForm | undefined;
   @ViewChild('staticTabs') staticTabs: TabsetComponent | undefined;
 
   addPropertyForm!: FormGroup;
@@ -80,12 +78,10 @@ export class AddPropertyComponent implements OnInit {
         Description: [null],
       }),
     });
-
-    console.log(this.addPropertyForm);
   }
 
   //#region <Getter Methods>
-  // #region <FormGroups>
+      // #region <FormGroups>
 
   get BasicInfo() {
     return this.addPropertyForm.controls.BasicInfo as FormGroup;
@@ -103,8 +99,8 @@ export class AddPropertyComponent implements OnInit {
     return this.addPropertyForm.controls.OtherInfo as FormGroup;
   }
 
-  // #endregion
-  //#region <Form Controls>
+      // #endregion
+    //#region <Form Controls>
 
   get SellRent() {
     return this.BasicInfo.controls.SellRent as FormControl;
@@ -189,7 +185,7 @@ export class AddPropertyComponent implements OnInit {
   get Description() {
     return this.OtherInfo.controls.Description as FormControl;
   }
-  //#endregion
+    //#endregion
   //#endregion
 
   onBack() {
@@ -200,7 +196,6 @@ export class AddPropertyComponent implements OnInit {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
-      console.log(this.property);
       this.housingService.addProperty(this.property);
       this.alertify.success('Congrats, your property listed successfully on our website');
       if(this.SellRent.value == '2'){
@@ -214,6 +209,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProperty(): void {
+    this.property.Id = this.housingService.newPropID();
     this.property.SellRent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.PType = this.PType.value;

@@ -6,7 +6,7 @@
         <form (ngSubmit)="onSubmit()" [formGroup]="addPropertyForm">
           <div class="tab-panel">
             <tabset class="member-tabset" #staticTabs>
-              <tab heading="Basic Info" id="tab1" formGroupName="BasicInfo">
+              <tab heading="Basic Info" formGroupName="BasicInfo">
                 <div class="form-group col-12">
                   <p>I want to</p>
                     <div class="btn-group" btnRadioGroup formControlName="SellRent">
@@ -237,30 +237,30 @@
                 </div>
               </tab>
               <tab heading="Photo">
-            <div class="form-group col-12">
-              <div class="photo-control">
-                  <button class="mt-5" type="button">Upload</button> <br>
-                  This is under construction
-              </div>
-            </div>
-            <div class="form-group col-12">
-              <button
-                type="button"
-                class="btn btn-primary btn-block"
-                (click)="selectTab(3, true)">
-                Previous
-              </button>
-              <button
-                type="reset"
-                class="btn btn-primary btn-block">
-                Cancel
-              </button>
-              <button
-                type="submit"
-                class="btn btn-primary btn-block">
-                Save
-              </button>
-            </div>
+                 <div class="form-group col-12">
+                   <div class="photo-control">
+                       <button class="mt-5" type="button">Upload</button> <br>
+                       This is under construction
+                   </div>
+                 </div>
+                 <div class="form-group col-12">
+                   <button
+                     type="button"
+                     class="btn btn-primary btn-block"
+                     (click)="selectTab(3, true)">
+                     Previous
+                   </button>
+                   <button
+                     type="reset"
+                     class="btn btn-primary btn-block">
+                     Cancel
+                   </button>
+                   <button
+                     type="submit"
+                     class="btn btn-primary btn-block">
+                     Save
+                   </button>
+                 </div>
               </tab>
             </tabset>
           </div>

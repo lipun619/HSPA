@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ipropertyBase } from '../model/ipropertybase';
 import { Property } from '../model/properties';
+import { localizedString } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,17 @@ export class HousingService {
         const propertiesArray: Array<ipropertyBase> = [];
         let dataArray: any = [];
         dataArray = data;
+
+        const localProperties = JSON.parse(localStorage.getItem('newProp')!);
+
+        if (localProperties) {
+          for (const lp in localProperties) {
+            if (localProperties.hasOwnProperty(lp) && localProperties[lp].SellRent === SellRent) {
+              propertiesArray.push(localProperties[lp]);
+            }
+          }
+        }
+
         for (const id in dataArray) {
           if (data.hasOwnProperty(id) && dataArray[id].SellRent === SellRent) {
             propertiesArray.push(dataArray[id]);
@@ -26,7 +38,20 @@ export class HousingService {
     );
   }
 
+  //Add new property in array if newProp already exists in local storage
   addProperty(property: Property) {
-    localStorage.setItem('newProp', JSON.stringify(property));
+    let newProp = [];
+    newProp = [...JSON.parse(localStorage.getItem('newProp')!), property];
+    localStorage.setItem('newProp', JSON.stringify(newProp));
+  }
+
+  newPropID() {
+    if (localStorage.getItem('PID')) {
+      localStorage.setItem('PID', String(+localStorage.getItem('PID')! + 1));
+      return +localStorage.getItem('PID')!;
+    } else {
+      localStorage.setItem('PID', '101');
+      return 101;
+    }
   }
 }
