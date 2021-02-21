@@ -8,6 +8,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
@@ -22,13 +23,18 @@ import { HousingService } from './service/housing.service';
 import { UserServiceService } from './service/user-service.service';
 import { AlertifyService } from './service/alertify.service';
 import { AuthService } from './service/auth.service';
+import { PropertyDetailResolverService } from './property/property-detail/property-detail-resolver.service';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 
 const appRoutes: Routes = [
   {path: '', component:PropertyListComponent},
   {path: 'add-property', component:AddPropertyComponent},
   {path: 'rent-property', component:PropertyListComponent},
-  {path: 'property-detail/:id', component:PropertyDetailComponent},
+  {path: 'property-detail/:id',
+          component:PropertyDetailComponent,
+          resolve: {prp: PropertyDetailResolverService}},
   {path: 'user/login', component: UserLoginComponent},
   {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component:PageNotFoundComponent}
@@ -47,6 +53,8 @@ const appRoutes: Routes = [
     UserRegisterComponent,
     UserLoginComponent,
     UserRegisterComponent,
+    FilterPipe,
+    SortPipe
    ],
   imports: [
     BrowserModule,
@@ -58,9 +66,10 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxGalleryModule
   ],
-  providers: [HousingService, UserServiceService, AlertifyService, AuthService],
+  providers: [HousingService, UserServiceService, AlertifyService, AuthService, PropertyDetailResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

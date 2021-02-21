@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hspa-angular-lkp"
+  },
+  "targets": {
+    "hspa-angular-lkp": {
+      "hosting": {
+        "real-state-app": [
+          "hspa-angular-lkp"
+        ]
+      }
+    }
+  }
+}

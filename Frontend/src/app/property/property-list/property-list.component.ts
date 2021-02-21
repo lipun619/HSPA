@@ -10,6 +10,10 @@ import { HousingService } from 'src/app/service/housing.service';
 })
 export class PropertyListComponent implements OnInit {
   properties: ipropertyBase[] = [];
+  SearchCity = '';
+  City = ''
+  SortbyParam ='City';
+  SortDirection = 'asc'
   SellRent = 1;
   constructor(
     private housingService: HousingService,
@@ -35,5 +39,23 @@ export class PropertyListComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onCityFilter() {
+    this.SearchCity = this.City
+  }
+
+  onCityFilterClear() {
+    this.SearchCity = ''
+    this.City = ''
+  }
+
+  onSortDirection() {
+    if(this.SortDirection === 'asc') {
+      this.SortDirection = 'desc'
+    }
+    else {
+      this.SortDirection = 'asc'
+    }
   }
 }
